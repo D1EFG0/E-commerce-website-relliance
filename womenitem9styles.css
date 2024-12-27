@@ -1,0 +1,398 @@
+body {
+    background-color: #f2eeed;
+}
+
+.logoprincipal {
+    height: 300px;
+    width: 300px;
+    background: none;
+    justify-content: center;
+    align-items: center;
+    max-height: 100%; 
+    max-width: 100%; 
+    font-size: 40px;
+}
+
+.navbar {
+    background-color: #f2eeed;
+    width: auto;
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.container1,
+.container11 {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-left: 10px;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 245px;
+}
+
+.container3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bar4,
+.bar5,
+.bar6 {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdowncontent {
+    display: none;
+    position: absolute;
+    background-color: #f2eeed;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 150px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    border-radius: 10px;
+}
+
+.dropdowncontent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdowncontent {
+    display: block;
+    opacity: 1;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 30px;
+    background-color: #f2eeed;
+}
+
+.column {
+    width: calc(20% - 5px);
+    height: 400px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.column img {
+    max-width: 100%;
+    height: auto;
+}
+
+.searchbutton{
+    border: none;
+    background-color: #f2eeed;
+    padding: 10px 20px; /* Padding for better visual */
+    font-size: 18px; /* Font size */
+    cursor: pointer; /* Cursor style */
+    text-decoration: none; /* Remove underline */
+    color: #f2eeed;
+}
+
+.profilebutton{
+    border: none;
+    background-color: #f2eeed;
+    padding: 10px 20px; /* Padding for better visual */
+    font-size: 18px; /* Font size */
+    cursor: pointer; /* Cursor style */
+    text-decoration: none; /* Remove underline */
+    color: #f2eeed;
+}
+
+
+.bagbutton {
+    border: none;
+    background-color: #f2eeed;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+.dropdowncontent a:hover {
+    background-color: lightgrey;
+}
+
+.subscreen {
+    position: fixed;
+    top: 0;
+    right: -90%;
+    width: 45%;
+    height: 100%;
+    background-color: #f2eeed;
+    z-index: 1000;
+    transition: right 0.5s ease;
+    overflow-y: auto;
+}
+
+.subscreen.active {
+    right: 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+body.active-overlay {
+    overflow: hidden;
+}
+
+body.active-overlay::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.title {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    color: black;
+}
+
+.no-items-msg {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+}
+
+.shopping-items:empty + .no-items-msg {
+    display: block;
+}
+
+.containerall {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imagen4,
+.imagen5 {
+    height: 650px;
+    width: 650px;
+}
+
+.container4,
+.container5 {
+    display: flex;
+    flex-direction: column;
+    padding: 10px; /* Adjust padding as needed */
+    align-items: flex-start; /* Align items to the start of the container */
+}
+
+.container5 {
+    padding-top: 160px;
+}
+
+.remove-all-btn {
+    border: none;
+    background-color: #2d2828;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+
+.continue-checkout {
+    display: flex;
+    flex-direction: row;
+}
+
+.item-details {
+    margin-left: 20px;
+    float: left;
+}
+
+.container5 {
+    padding-top: 50px;
+}
+
+.quantity-btn {
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.item-controls {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2eeed;
+}
+
+.item-controls button {
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #2d2828;
+    color: white;
+    border-radius: 5px;
+}
+
+.item-controls .left-button {
+    margin-right: auto;
+}
+
+.item-controls .right-button {
+    margin-left: auto;
+}
+
+.continue-shopping-btn,
+.checkout-btn {
+    border: none;
+    background-color: #2d2828;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.shopping-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin between items */
+}
+
+.item-image {
+    width: 200px; /* Adjust image width */
+    height: 200px; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add space between image and details */
+}
+
+.item-details {
+    flex-grow: 1; /* Allow details to grow to fill available space */
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    padding: 5px 10px; /* Adjust button padding */
+    margin: 0 5px; /* Add space between buttons */
+}
+
+.size-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Adjust as needed */
+}
+
+.size-button {
+    padding: 10px 20px; /* Adjust button padding as needed */
+    background-color: #f2eeed; /* Button background color */
+    border: 1px solid #ccc; /* Button border */
+    cursor: pointer;
+    flex: 1; /* Make buttons equally spaced */
+    margin-right: 5px; /* Space between buttons */
+}
+
+.size-button:last-child {
+    margin-right: 0; /* Remove margin for the last button */
+}
+
+.size-button:hover {
+    background-color: #e0dede; /* Button hover effect */
+}
+
+.size-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Adjust as needed */
+}
+
+.size-button {
+    padding: 10px 20px; /* Adjust button padding as needed */
+    background-color: #f2eeed; /* Button background color */
+    border: none;
+    cursor: pointer;
+    flex: 1; /* Make buttons equally spaced */
+    margin-right: 5px; /* Space between buttons */
+}
+
+.size-button:last-child {
+    margin-right: 0; /* Remove margin for the last button */
+}
+
+.size-button:hover {
+    background-color: #e0dede; /* Button hover effect */
+}
+
+#add-to-cart-button-item14 {
+    font-size: 18px; /* Makes the button text bigger */
+    padding: 10px 20px; /* Adjusts the button size by increasing padding */
+    background-color: black; /* Sets the button background color to black */
+    color: white; /* Sets the button text color to white */
+    border: none; /* Removes any default border */
+    border-radius: 5px; /* Optional: adds rounded corners */
+    cursor: pointer; /* Changes cursor to pointer to indicate it's clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#add-to-cart-button-item14:hover {
+    background-color: grey; /* Changes background color to grey on hover */
+}
+
+.size-button.selected {
+    background-color: black;
+    color: white;
+}

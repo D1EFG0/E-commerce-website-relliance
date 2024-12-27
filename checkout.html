@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkoutstyles.css">
+</head>
+<body>
+    <nav class="navbar" style="background-color: #f2eeed;">
+        <div class="container1"></div>
+        <div class="container2">
+            <a href="index (2).html">
+                <img class="logoprincipal" src="logo mariana 2.PNG">
+            </a>
+        </div>
+        <div class="container3"></div>
+    </nav>
+
+    <div class="container">
+        <form id="checkout-form" action="https://script.google.com/macros/s/AKfycbwKyzUUkX1ptXTJSZeKCLafbimJLYfqS4XY-WBrKGLfgC9Q1xWE9ZEDn4_AW5042cFl8g/exec" method="post">
+            <div class="form-group">
+                <label for="email" class="emailContact">CONTACT</label>
+                <br>
+                <input type="email" id="email" name="email" placeholder="EMAIL" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="country" class="deliverystyle">DELIVERY</label>
+                <br>
+                <select id="country" name="country" required>
+                    <option value="">Country/Region</option>
+                    <option value="USA">United States</option>
+                    <option value="CAN">Canada</option>
+                    <option value="UK">United Kingdom</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="name-group">
+                    <input type="text" id="fname" name="firstname" placeholder="FIRST NAME" required>
+                    <input type="text" id="lname" name="lastname" placeholder="LAST NAME" required>
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="form-group" >
+                <input type="text" id="address" name="address" placeholder="ADDRESS" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="apartment" name="apartment" placeholder="APARTMENT">
+            </div>
+            <div class="form-group">
+                <input type="text" id="zip" name="zip" placeholder="ZIP CODE" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="city" name="city" placeholder="CITY" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="state" name="state" placeholder="STATE" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="phone" name="phone" placeholder="PHONE NUMBER" required>
+            </div>
+            <br>
+            <label for="shipping-method" class="shippingstyle">SHIPPING METHOD</label>
+            <br>
+            <br>
+            <div class="form-group shipping-box">
+                <div class="shipping-method-info">
+                    <p>Standard Shipping (3-5 business days) - $9.99</p>
+                </div>
+            </div>
+
+            <br>
+            <label for="payment" class="paymentsylte">PAYMENT</label>
+            <br>
+            <br>
+            <input type="hidden" id="form-data" name="form-data">
+            <button id="pay-now-btn" type="button" class="submit-btn">PAY NOW</button>
+
+        </form>
+        <div class="checkout-container">
+            <div class="shopping-items"></div>
+            <div class="subtotal" id="subtotal">
+                <span>SUBTOTAL:</span> $<span id="subtotal-amount">0.00</span>
+            </div>
+            <br>
+            <div class="shipping" id="shipping">
+                <span>SHIPPING:</span> $<span id="shipping-amount">9.99</span>
+            </div>
+            <br>
+            <div class="estimated-taxes">
+                <span>ESTIMATED TAXES:</span> $<span id="tax-amount">0.00</span>
+            </div>
+            <br>
+            <div class="total" id="total">
+                <span>TOTAL:</span> $<span id="total-amount">0.00</span>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+
+    <script>
+        document.getElementById("pay-now-btn").addEventListener("click", function() {
+            var formData = {
+                email: document.getElementById("email").value,
+                country: document.getElementById("country").value,
+                firstname: document.getElementById("fname").value,
+                lastname: document.getElementById("lname").value,
+                address: document.getElementById("address").value,
+                apartment: document.getElementById("apartment").value,
+                zip: document.getElementById("zip").value,
+                city: document.getElementById("city").value,
+                state: document.getElementById("state").value,
+                phone: document.getElementById("phone").value,
+                items: JSON.parse(localStorage.getItem('shoppingBagItems')) || []  // Add this line inside formData
+
+            };
+                        //https://script.google.com/macros/s/AKfycbxt1WQGm_G60dbqLfCKV-mojIT27tYapnZJMgT0xReD5jTHrAHKmx9HAbMp7-fVwG7WSQ/exec', {
+
+            fetch('https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbwvRx4kG2nrR3KDzdP4CqndJtY98LrFkXLGvsxuzr1cc2F2fvnRjQ84CqRkz_RUUN5CRA/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Form submitted successfully');
+                    // Optionally, you can reset the form after successful submission
+                    document.getElementById("checkout-form").reset();
+                } else {
+                    console.error('Failed to submit form:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+            });
+        });
+
+        function calculateSubtotal() {
+        const savedItems = JSON.parse(localStorage.getItem('shoppingBagItems')) || [];
+        let subtotal = 0;
+
+        savedItems.forEach(item => {
+            const price = parseFloat(item.itemPrice.replace('$', ''));
+            subtotal += price;
+        });
+
+        document.getElementById('subtotal-amount').textContent = subtotal.toFixed(2);
+    }
+
+    window.addEventListener('load', function() {
+        const savedItems = JSON.parse(localStorage.getItem('shoppingBagItems'));
+        const shoppingItemsContainer = document.querySelector('.shopping-items');
+        
+        if (savedItems) {
+            savedItems.forEach(item => {
+                const newItem = {
+                    itemName: item.itemName,
+                    itemPrice: item.itemPrice,
+                    itemSize: item.itemSize // Include the item size
+                };
+
+                const shoppingItem = createShoppingItem(newItem);
+                shoppingItemsContainer.appendChild(shoppingItem);
+            });
+        }
+        calculateSubtotal(); // Calculate subtotal after loading items
+        updateTaxes(); // Update taxes after loading
+        updateTotal(); // Add this line after calling updateTaxes()
+    });
+
+    function createShoppingItem(item) {
+        const shoppingItem = document.createElement('div');
+        shoppingItem.classList.add('shopping-item');
+
+        // Create item details container
+        const itemDetails = document.createElement('div');
+        itemDetails.classList.add('item-details');
+
+        // Create item name element
+        const itemName = document.createElement('h2');
+        itemName.textContent = item.itemName; // Set item name
+        itemName.classList.add('item-name'); // Add class for styling
+
+        // Create item price element
+        const itemPrice = document.createElement('h2');
+        itemPrice.textContent = item.itemPrice; // Set item price
+        itemPrice.classList.add('item-price'); // Add class for styling
+
+        // Create item size element
+        const itemSize = document.createElement('h2');
+        itemSize.textContent = `Size: ${item.itemSize}`; // Set item size
+        itemSize.classList.add('item-size'); // Add class for styling
+
+        // Append item name, price, and size to item details container
+        //itemDetails.appendChild(itemName);
+        //itemDetails.appendChild(itemPrice);
+        //itemDetails.appendChild(itemSize);
+
+        // Append item details container to shopping item container
+        shoppingItem.appendChild(itemDetails);
+
+        return shoppingItem;
+
+    }
+
+    function calculateTaxes(subtotal, shipping) {
+    const taxRate = 6.25; // Tax rate in Lebanon, IL (6.25%)
+    const taxableAmount = subtotal + shipping;
+    const taxes = taxableAmount * (taxRate / 100);
+    return taxes.toFixed(2);
+}
+
+function updateTaxes() {
+    const subtotal = parseFloat(document.getElementById('subtotal-amount').textContent);
+    const shipping = parseFloat(document.getElementById('shipping-amount').textContent);
+    const taxes = calculateTaxes(subtotal, shipping);
+    document.getElementById('tax-amount').textContent = taxes;
+}
+
+window.addEventListener('load', function() {
+    calculateSubtotal(); // Calculate subtotal after loading items
+    updateTaxes(); // Update taxes after loading
+});
+
+function calculateTotal() {
+    const subtotal = parseFloat(document.getElementById('subtotal-amount').textContent);
+    const shipping = parseFloat(document.getElementById('shipping-amount').textContent);
+    const tax = parseFloat(document.getElementById('tax-amount').textContent);
+
+    const total = subtotal + shipping + tax;
+    return total.toFixed(2);
+}
+
+window.addEventListener('load', function() {
+    // Calculate subtotal and taxes as before
+    calculateSubtotal(); // Calculate subtotal after loading items
+    updateTaxes(); // Update taxes after loading
+
+    // Calculate and update total
+    const totalAmount = calculateTotal();
+    document.getElementById('total-amount').textContent = totalAmount;
+});
+        
+
+
+    </script>
+
+    <script src="checkoutbackend.js"></script>
+
+</body>
+</html>

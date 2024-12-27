@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="womenitem1styles.css">
+</head>
+<body>
+
+<nav class="navbar" style="background-color: #f2eeed;">
+    <div class="container1">
+        <div class="menu">
+            <div class="vertical">
+                <div class="dropdown">
+                    <div class="bar4"></div>
+                    <div class="bar5"></div>
+                    <div class="bar6"></div>
+                    <div class="dropdowncontent">
+                        <a href="index (2).html">Shop all</a>
+                        <a href="men.html">Men</a>
+                        <a href="women.html">Women</a>
+                        <a href="unisex.html">Unisex</a>
+                        <a href="#">F&Q</a>
+                        <a href="aboutus.html">About us</a>
+                        <a href="contactus.html">Contact us</a>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="container2">
+        <a href="index (2).html">
+            <img class="logoprincipal" src="logo mariana 2.PNG">
+        </a>
+    </div>
+    <div class="container3">
+        <button class="searchbutton">Search</button>
+        <button class="profilebutton">Profile</button>
+        <button class="bagbutton">Bag</button>
+    </div>
+</nav>
+
+<div class="containerall">
+    <div class="container4">
+        <img class="imagen4" src="eye.jpg">
+        <img class="imagen5" src="mens clothes.jpg">
+    </div>
+    <div class="container5">
+        <h2> <br> WomenItem1</h2>
+        <h2 class="priceitem6">$24.99</h2>
+        <h2>More colors?</h2>
+        <h2>Sizes</h2>
+        <div class="size-buttons">
+            <button class="size-button" data-size="S">S</button>
+            <button class="size-button" data-size="M">M</button>
+            <button class="size-button" data-size="X">X</button>
+            <button class="size-button" data-size="XL">XL</button>
+        </div>
+        <br>
+        <br>
+        <button id="add-to-cart-button-item6" class="addtocartbutton">Add to bag</button>
+    </div>
+    <div class="container6"></div>
+</div>
+
+<!-- Subscreen for Bag -->
+<div class="subscreen">
+    <!-- <p class="title">Shopping Bag</p> Shopping Bag title -->
+    <button class="close-btn">X</button> <!-- Close button -->
+    <div class="shopping-items">
+        <!-- Shopping items will be dynamically added here -->
+    </div>
+    <p class="no-items-msg">No shopping items in the bag</p> <!-- Message for no items -->
+    <div class="item-controls">
+        <button class="checkout-btn">Checkout</button> <!-- Button to checkout -->
+        <div class="continue-checkout">
+            <button class="continue-shopping-btn">Continue Shopping</button>
+            <!-- Optionally, you can keep the "Continue Shopping" button -->
+        </div>
+    </div>
+</div>
+
+<script>
+    let selectedSize = '';
+
+    // Add event listeners to size buttons
+    document.querySelectorAll('.size-button').forEach(button => {
+        button.addEventListener('click', function() {
+            selectedSize = this.getAttribute('data-size');
+            // Optional: Highlight the selected button
+            document.querySelectorAll('.size-button').forEach(btn => btn.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    // Get reference to the add to cart button for item6
+    const addToCartButton6 = document.querySelector('#add-to-cart-button-item6');
+
+    const item6Price = document.querySelector('.priceitem6').textContent;
+
+    // Get reference to the shopping items container
+    const shoppingItemsContainer = document.querySelector('.shopping-items');
+
+    // Check if the add to cart button for item6 is found
+    if (addToCartButton6) {
+        // Add click event listener to the add to cart button for item6
+        addToCartButton6.addEventListener('click', function() {
+            if (!selectedSize) {
+                alert('Please select a size.');
+                return;
+            }
+            const item6Price = document.querySelector('.container5 h2:nth-child(2)').textContent;  // Adjust the selector to target the price element correctly
+const newItem = {
+    itemName: 'Item6', // Example item name
+    itemPrice: item6Price, // Fetch item price from the HTML
+    itemSize: selectedSize // Include the selected size
+};
+
+
+            // Create a new shopping item
+            const shoppingItem = createShoppingItem(newItem);
+            shoppingItemsContainer.appendChild(shoppingItem);
+
+            saveShoppingBagItems(); // Save shopping bag items to localStorage
+            showSubscreen(); // Show the subscreen
+            checkShoppingItems(); // Check if there are any items after adding
+        });
+    } else {
+        console.error('Add to cart button for item6 not found.');
+    }
+
+    // Load shopping bag items from localStorage on page load
+    window.addEventListener('load', function() {
+        const savedItems = JSON.parse(localStorage.getItem('shoppingBagItems'));
+        if (savedItems) {
+            savedItems.forEach(item => {
+                const newItem = {
+                    itemName: item.itemName,
+                    itemPrice: item.itemPrice,
+                    itemSize: item.itemSize // Include the item size
+                };
+                const shoppingItem = createShoppingItem(newItem);
+                shoppingItemsContainer.appendChild(shoppingItem);
+            });
+        }
+        checkShoppingItems(); // Check if there are any items after loading
+    });
+
+    // Function to create shopping item element
+    function createShoppingItem(item) {
+        const shoppingItem = document.createElement('div');
+        shoppingItem.classList.add('shopping-item');
+
+        // Create image element
+        const itemImage = document.createElement('img');
+        itemImage.classList.add('item-image');
+        if (item.itemName === 'Item1') {
+            itemImage.src = 'women clothing.jpg'; // Set image source for item1
+        } else if (item.itemName === 'Item2') {
+            itemImage.src = 'goose.jpg'; // Set image source for item2
+        } else if (item.itemName == 'Item3') {
+            itemImage.src = 'baseball.jpg';
+        } else if (item.itemName == 'Item4') {
+            itemImage.src = 'bird4.jpg';
+        } else if (item.itemName == 'Item5') {
+            itemImage.src = 'water5.jpg';
+        } else if (item.itemName == 'Item6') {
+            itemImage.src = 'eye.jpg';
+        } else if (item.itemName == 'Item7') {
+            itemImage.src = 'bocho.jpg';
+        } else if (item.itemName == 'Item8') {
+            itemImage.src = 'blueberry.jpg';
+        } else if (item.itemName == 'Item9') {
+            itemImage.src = 'mineral.jpg';
+        } else if (item.itemName == 'Item10') {
+            itemImage.src = 'orange.jpg';
+        } else if (item.itemName == 'Item11') {
+            itemImage.src = 'leaves.jpg';
+        } else if (item.itemName == 'Item12') {
+            itemImage.src = 'camaleon.png';
+        } else if (item.itemName == 'Item13') {
+            itemImage.src = 'flowers.jpg';
+        } else if (item.itemName == 'Item14') {
+            itemImage.src = 'computer.jpg';
+        } else if (item.itemName == 'Item15') {
+            itemImage.src = 'aguacate.jpg';
+        } else if (item.itemName == 'Item16') {
+            itemImage.src = 'owl.jpg';
+        } else if (item.itemName == 'Item17') {
+            itemImage.src = 'dog.jpg';
+        } else if (item.itemName == 'Item18') {
+            itemImage.src = 'canastas.jpg';
+        } else if (item.itemName == 'Item19') {
+            itemImage.src = 'coco.jpg';
+        } else if (item.itemName == 'Item20') {
+            itemImage.src = 'agave.jpg';
+        }
+        itemImage.style.width = '200px'; // Set image width (adjust as needed)
+        itemImage.style.height = '200px'; // Maintain aspect ratio
+        itemImage.style.float = 'left'; // Float image to the left
+        shoppingItem.appendChild(itemImage); // Append image to shopping item container
+
+        // Create item details container
+        const itemDetails = document.createElement('div');
+        itemDetails.classList.add('item-details');
+        itemDetails.style.marginLeft = '20px'; // Add margin between image and details
+
+        // Create item name element
+        const itemName = document.createElement('h2');
+        itemName.textContent = item.itemName; // Set item name
+        itemName.classList.add('item-name'); // Add class for styling
+
+        // Create item price element
+        const itemPrice = document.createElement('h2');
+        itemPrice.textContent = item.itemPrice; // Set item price
+        itemPrice.classList.add('item-price'); // Add class for styling
+
+        // Create item size element
+        const itemSize = document.createElement('h2');
+        itemSize.textContent = `Size: ${item.itemSize}`; // Set item size
+        itemSize.classList.add('item-size'); // Add class for styling
+
+        // Create quantity controls container
+        const quantityControls = document.createElement('div');
+        quantityControls.classList.add('quantity-controls');
+
+        // Create decrement button
+        const decrementBtn = document.createElement('button');
+        decrementBtn.textContent = '-'; // Minus sign
+        decrementBtn.classList.add('quantity-btn', 'decrement-btn');
+        decrementBtn.addEventListener('click', function() {
+            let counterDisplay = this.nextElementSibling;
+            let count = parseInt(counterDisplay.textContent);
+            if (count > 1) {
+                count--;
+                counterDisplay.textContent = count;
+                saveShoppingBagItems(); // Save shopping bag items to localStorage
+            } else {
+                // If the counter is already at 1, remove the item from the bag
+                const shoppingItem = this.closest('.shopping-item');
+                shoppingItem.remove();
+                saveShoppingBagItems(); // Save shopping bag items to localStorage
+                checkShoppingItems(); // Check if there are any remaining items
+            }
+        });
+
+        // Create counter display
+        const counterDisplay = document.createElement('span');
+        counterDisplay.textContent = '1'; // Initial quantity
+        counterDisplay.classList.add('quantity-counter');
+
+        // Create increment button
+        const incrementBtn = document.createElement('button');
+        incrementBtn.textContent = '+'; // Plus sign
+        incrementBtn.classList.add('quantity-btn', 'increment-btn');
+        incrementBtn.addEventListener('click', function() {
+            let counterDisplay = this.previousElementSibling;
+            let count = parseInt(counterDisplay.textContent);
+            count++;
+            counterDisplay.textContent = count;
+            saveShoppingBagItems(); // Save shopping bag items to localStorage
+        });
+
+        // Append all elements to quantity controls container
+        quantityControls.appendChild(decrementBtn);
+        quantityControls.appendChild(counterDisplay);
+        quantityControls.appendChild(incrementBtn);
+
+        // Append item name, price, size, and quantity controls to item details container
+        itemDetails.appendChild(itemName);
+        itemDetails.appendChild(itemPrice);
+        itemDetails.appendChild(itemSize);
+        itemDetails.appendChild(quantityControls);
+
+        // Append item details container to shopping item container
+        shoppingItem.appendChild(itemDetails);
+
+        return shoppingItem;
+    }
+
+    function saveShoppingBagItems() {
+        const shoppingItems = Array.from(shoppingItemsContainer.children);
+        const itemsData = shoppingItems.map(item => {
+            const itemName = item.querySelector('.item-name').textContent; // Retrieve item name
+            const itemPrice = item.querySelector('.item-price').textContent; // Retrieve item price
+            const itemSize = item.querySelector('.item-size').textContent.replace('Size: ', ''); // Retrieve item size
+            return {
+                itemName: itemName,
+                itemPrice: itemPrice,
+                itemSize: itemSize
+            };
+        });
+        localStorage.setItem('shoppingBagItems', JSON.stringify(itemsData));
+    }
+
+    // Function to show the subscreen
+    function showSubscreen() {
+        const subscreen = document.querySelector('.subscreen');
+        subscreen.classList.add('active');
+    }
+
+    // Function to check if there are shopping items
+    function checkShoppingItems() {
+        const noItemsMessage = document.querySelector('.no-items-msg');
+        const checkoutBtn = document.querySelector('.checkout-btn');
+        if (shoppingItemsContainer.children.length === 0) {
+            noItemsMessage.style.display = 'block'; // Show the "No shopping items" message
+            checkoutBtn.disabled = true; // Disable the checkout button
+            checkoutBtn.style.backgroundColor = 'grey'; // Change color to grey
+        } else {
+            noItemsMessage.style.display = 'none'; // Hide the "No shopping items" message
+            checkoutBtn.disabled = false; // Enable the checkout button
+            checkoutBtn.style.backgroundColor = ''; // Reset color
+        }
+    }
+</script>
+
+
+<script src="subscreen.js"></script>
+
+</body>
+</html>

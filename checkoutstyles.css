@@ -1,0 +1,325 @@
+.logoprincipal {
+    height: 300px;
+    width: 300px;
+    background: none;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: #f2eeed;
+    width: auto;
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 10%;
+}
+
+.container3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bar4,
+.bar5,
+.bar6 {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdowncontent {
+    display: none;
+    position: absolute;
+    background-color: #f2eeed;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 150px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    border-radius: 10px;
+}
+
+.dropdowncontent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdowncontent {
+    display: block;
+    opacity: 1;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2eeed;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container {
+    width: 50%;
+    margin: 50px 0;
+    padding: 20px;
+    background-color: #f2eeed;
+    margin-left: -45%;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.form-group .half {
+    width: 48%;
+    float: left;
+}
+.form-group .half:first-child {
+    margin-right: 4%;
+}
+.clearfix {
+    clear: both;
+}
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+.submit-btn:hover {
+    background-color: black;
+}
+
+.emailContact{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.name-group {
+    display: flex;
+}
+
+.name-group input {
+    flex: 1;
+    margin-right: 5px; /* Adjust as needed for spacing */
+    width: 50%; /* Equal width for both input fields */
+}
+
+.deliverystyle{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: black;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s; /* Smooth transition for border color change */
+}
+
+.form-group input:hover, .form-group select:hover {
+    border-color: #999; /* Change border color on hover */
+}
+
+.shippingstyle{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.shipping-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.shipping-method-info p {
+    margin: 0;
+}
+
+.paymentsylte{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.bar4,
+.bar5,
+.bar6 {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdowncontent {
+    display: none;
+    position: absolute;
+    background-color: #f2eeed;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 150px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    border-radius: 10px;
+}
+
+.dropdowncontent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdowncontent {
+    display: block;
+    opacity: 1;
+}
+
+.container1 {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-grow: 1;
+}
+
+.checkout-container {
+    width: 60%;
+    padding: 20px;
+    margin-left: 950px;  /* Adjust this value to move it up or down */
+}
+
+.shopping-items {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin-top: -750px;
+}
+
+.shopping-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin between items */
+    padding: 10px; /* Add padding for better visual */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.item-image {
+    width: 100px; /* Adjust image width */
+    height: auto; /* Maintain aspect ratio */
+    margin-left: -10px;
+    margin-right: 30px; /* Add space between image and details */
+}
+
+.item-details {
+    flex-grow: 1; /* Allow details to grow to fill available space */
+}
+
+.item-name {
+    margin-bottom: 5px; /* Add margin below item name */
+}
+
+.item-price {
+    margin-bottom: 5px; /* Add margin below item price */
+}
+
+.subtotal,
+.shipping,
+.estimated-taxes {
+    font-weight: bold;
+    font-size: 1.3em; /* Increase font size for better visibility */
+}
+
+.subtotal > span,
+.shipping > span,
+.estimated-taxes > span {
+    margin-left: auto; /* Move the numbers to the right */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Change to column layout on smaller screens */
+        width: 100%;
+        margin: 50px 0;
+        padding: 20px;
+        background-color: #f2eeed;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between; /* Add space between form and checkout */
+    }
+    
+    .checkout-container {
+        width: calc(50% - 20px); /* Adjusted width for checkout */
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: calc(50% - 20px); /* Adjusted width for input fields */
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    .lname,
+    .shippingstyle,
+    .paymentsylte {
+        width: calc(100% - 40px); /* Equal width for last name input, shipping method, and payment button */
+    }
+}
+
+.total {
+    font-weight: bold;
+    font-size: 1.3em; /* Increase font size for better visibility */
+}
+
+.total > span {
+    margin-left: auto; /* Move the label to the right */
+}
+
